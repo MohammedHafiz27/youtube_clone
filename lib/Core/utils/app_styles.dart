@@ -4,7 +4,7 @@ import 'package:youtube_clone/Core/utils/size_config.dart';
 abstract class AppStyles {
   static TextStyle styleRegular14(BuildContext context) {
     return TextStyle(
-      color: Color(0xffffffff),
+      color: Theme.of(context).textTheme.bodyMedium?.color,
       fontWeight: FontWeight.w400,
       fontSize: getResponsiveFontSize(context, fontSize: 14),
     );
