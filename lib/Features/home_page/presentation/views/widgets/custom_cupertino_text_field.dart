@@ -1,10 +1,13 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomCupertinoTextField extends StatelessWidget {
   final bool isTapped;
-  const CustomCupertinoTextField({super.key, required this.searchController, required this.isTapped});
+  const CustomCupertinoTextField({
+    super.key,
+    required this.searchController,
+    required this.isTapped,
+  });
 
   final TextEditingController searchController;
 

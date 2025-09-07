@@ -35,7 +35,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
               });
             },
             child: isTapped
-                ? CustomCupertinoTextField(searchController: searchController, isTapped: isTapped)
+                ? CustomCupertinoTextField(
+                    searchController: searchController,
+                    isTapped: isTapped,
+                  )
                 : Align(
                     alignment: Alignment.centerRight,
                     child: Icon(Icons.search, color: Colors.white),

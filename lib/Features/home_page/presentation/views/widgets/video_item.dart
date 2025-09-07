@@ -15,14 +15,18 @@ class VideoItem extends StatelessWidget {
           Stack(
             children: [
               CachedNetworkImage(
-                imageUrl: "https://img.pikbest.com/origin/10/04/54/34TpIkbEsT4uG.jpg!w700wp",
+                imageUrl:
+                    "https://img.pikbest.com/origin/10/04/54/34TpIkbEsT4uG.jpg!w700wp",
                 fit: BoxFit.fill,
               ),
               Positioned(
                 bottom: 8,
                 right: 8,
                 child: Container(
-                  decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(4)),
+                  decoration: BoxDecoration(
+                    color: Colors.black54,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
                   padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   child: Text("12:50", style: TextStyle(color: Colors.white)),
                 ),
@@ -43,11 +47,20 @@ class VideoItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Video Title", style: AppStyles.styleSemiBold16(context)),
+                  Text(
+                    "Video Title",
+                    style: AppStyles.styleSemiBold16(context),
+                  ),
                   SizedBox(height: 4),
-                  Text("Channel Name", style: AppStyles.styleRegular14(context)),
+                  Text(
+                    "Channel Name",
+                    style: AppStyles.styleRegular14(context),
+                  ),
                   SizedBox(height: 4),
-                  Text("1M views • 2 days ago", style: AppStyles.styleRegular14(context)),
+                  Text(
+                    "1M views • 2 days ago",
+                    style: AppStyles.styleRegular14(context),
+                  ),
                 ],
               ),
             ],

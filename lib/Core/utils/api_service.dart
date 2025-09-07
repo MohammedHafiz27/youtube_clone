@@ -9,7 +9,10 @@ class ApiService {
     final response = await _dio.get(
       "$_baseUrl$endPoint",
       options: Options(
-        headers: {'x-rapidapi-key': dotenv.env['APIKEY'], 'x-rapidapi-host': 'youtube-media-downloader.p.rapidapi.com'},
+        headers: {
+          'x-rapidapi-key': dotenv.env['APIKEY'],
+          'x-rapidapi-host': 'youtube-media-downloader.p.rapidapi.com',
+        },
       ),
     );
     return response.data;
