@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_clone/Core/utils/assets.dart';
 import 'package:youtube_clone/Features/home_page/presentation/views/widgets/custom_cupertino_text_field.dart';
@@ -35,10 +34,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
               });
             },
             child: isTapped
-                ? CustomCupertinoTextField(
-                    searchController: searchController,
-                    isTapped: isTapped,
-                  )
+                ? CustomCupertinoTextField(searchController: searchController, isTapped: isTapped)
                 : Align(
                     alignment: Alignment.centerRight,
                     child: Icon(Icons.search, color: Colors.white),

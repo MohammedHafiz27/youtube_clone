@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:youtube_clone/Features/home_page/presentation/view_models/video_cubit/video_cubit.dart';
 import 'package:youtube_clone/Features/home_page/presentation/views/widgets/video_item.dart';
 
 class HomePageMobileBody extends StatelessWidget {
@@ -6,10 +8,20 @@ class HomePageMobileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return VideoItem();
+    return BlocBuilder<VideoCubit, VideoState>(
+      builder: (context, state) {
+        if (state is VideoLoading) {
+          return CircleAvatar();
+        } else if (state is VideoSuccess) {
+          return ListView.builder(
+            itemCount: context.read<VideoCubit>().searchModel?.items?.length ?? 0,
+            itemBuilder: (context, index) {
+              return VideoItem(index: index);
+            },
+          );
+        } else {
+          return Text("Error");
+        }
       },
     );
   }
