@@ -12,11 +12,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: CustomAppBar()),
-      body: BlocProvider(
-        create: (context) => VideoCubit(HomeRepoImple(ApiService()))..getSearchData("flutter"),
-        child: CustomAdaptiveLayout(
+    return BlocProvider(
+      create: (context) => VideoCubit(HomeRepoImple(ApiService()))..getSearchData("flutter"),
+      child: Scaffold(
+        appBar: AppBar(title: CustomAppBar()),
+        body: CustomAdaptiveLayout(
           mobileLayout: (context) => HomePageMobileBody(),
           tabletLayout: (context) => SizedBox(),
         ),

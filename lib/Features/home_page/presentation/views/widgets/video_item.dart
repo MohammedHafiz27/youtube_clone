@@ -69,7 +69,7 @@ class VideoItem extends StatelessWidget {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      context.read<VideoCubit>().searchModel?.items?[index].viewCountText ?? "1M views • 2 days ago",
+                      "${context.read<VideoCubit>().searchModel?.items?[index].viewCountText} • ${context.read<VideoCubit>().searchModel?.items?[index].publishedTimeText}",
                       style: AppStyles.styleRegular14(context),
                     ),
                   ],
