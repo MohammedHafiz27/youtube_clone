@@ -13,8 +13,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          VideoCubit(HomeRepoImple(ApiService()))..getSearchData("flutter"),
+      create: (context) => VideoCubit(HomeRepoImple(ApiService()))..getSearchData("flutter"),
       child: Scaffold(
         appBar: AppBar(title: CustomAppBar()),
         body: CustomAdaptiveLayout(
