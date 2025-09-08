@@ -33,7 +33,9 @@ class SearchItem extends Equatable {
     id: json['id'] as String?,
     title: json['title'] as String?,
     description: json['description'] as String?,
-    channel: json['channel'] == null ? null : Channel.fromJson(json['channel'] as Map<String, dynamic>),
+    channel: json['channel'] == null
+        ? null
+        : Channel.fromJson(json['channel'] as Map<String, dynamic>),
     isLiveNow: json['isLiveNow'] as bool?,
     lengthText: json['lengthText'] as String?,
     viewCountText: json['viewCountText'] as String?,
@@ -58,6 +60,17 @@ class SearchItem extends Equatable {
 
   @override
   List<Object?> get props {
-    return [type, id, title, description, channel, isLiveNow, lengthText, viewCountText, publishedTimeText, thumbnails];
+    return [
+      type,
+      id,
+      title,
+      description,
+      channel,
+      isLiveNow,
+      lengthText,
+      viewCountText,
+      publishedTimeText,
+      thumbnails,
+    ];
   }
 }

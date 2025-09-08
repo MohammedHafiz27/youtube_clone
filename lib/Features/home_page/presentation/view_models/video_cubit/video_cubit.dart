@@ -10,9 +10,12 @@ class VideoCubit extends Cubit<VideoState> {
   Future<void> getSearchData(String searchQuery) async {
     emit(VideoLoading());
     var resultEither = await homeRepo.getSearchData(searchQuery);
-    resultEither.fold((failure) => emit(VideoFailure(errorMessage: failure.errorMessage)), (data) {
-      searchModel = data;
-      emit(VideoSuccess());
-    });
+    resultEither.fold(
+      (failure) => emit(VideoFailure(errorMessage: failure.errorMessage)),
+      (data) {
+        searchModel = data;
+        emit(VideoSuccess());
+      },
+    );
   }
 }

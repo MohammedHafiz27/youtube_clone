@@ -12,7 +12,9 @@ class SearchModel extends Equatable {
   factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
     errorId: json['errorId'] as String?,
     nextToken: json['nextToken'] as String?,
-    items: (json['items'] as List<dynamic>?)?.map((e) => SearchItem.fromJson(e as Map<String, dynamic>)).toList(),
+    items: (json['items'] as List<dynamic>?)
+        ?.map((e) => SearchItem.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 
   Map<String, dynamic> toJson() => {

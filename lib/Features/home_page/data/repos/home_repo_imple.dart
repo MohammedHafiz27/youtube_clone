@@ -12,7 +12,9 @@ class HomeRepoImple implements HomeRepo {
   @override
   Future<Either<Failure, SearchModel>> getSearchData(String searchQuery) async {
     try {
-      var data = await apiService.getData("/v2/search/videos?keyword=$searchQuery");
+      var data = await apiService.getData(
+        "/v2/search/videos?keyword=$searchQuery",
+      );
       return Right(SearchModel.fromJson(data));
     } catch (e) {
       if (e is DioException) {
