@@ -5,10 +5,10 @@ import 'package:youtube_clone/Core/utils/failures.dart';
 import 'package:youtube_clone/Features/video_details/data/models/related_videos/related_videos.dart';
 import 'package:youtube_clone/Features/video_details/data/repos/related_videos_repo/related_video_repo.dart';
 
-class ReatedVideoRepoImple implements RelatedVideoRepo {
+class RelatedVideoRepoImple implements RelatedVideoRepo {
   final ApiService apiService;
 
-  ReatedVideoRepoImple(this.apiService);
+  RelatedVideoRepoImple(this.apiService);
   @override
   Future<Either<Failure, RelatedVideosModel>> getRelatedVideos(String videoId) async {
     try {

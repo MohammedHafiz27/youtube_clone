@@ -8,20 +8,16 @@ class VideoDetailsMobileBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        BlocBuilder<VideoDetailsCubit, VideoDetailsState>(
-          builder: (context, state) {
-            if (state is VideoDetailsLoading) {
-              return CircularProgressIndicator();
-            } else if (state is VideoDetailsSuccess) {
-              return VideoPlayerBody();
-            } else {
-              return Text("Error");
-            }
-          },
-        ),
-      ],
+    return BlocBuilder<VideoDetailsCubit, VideoDetailsState>(
+      builder: (context, state) {
+        if (state is VideoDetailsLoading) {
+          return CircularProgressIndicator();
+        } else if (state is VideoDetailsSuccess) {
+          return VideoPlayerBody();
+        } else {
+          return Text("Error");
+        }
+      },
     );
   }
 }

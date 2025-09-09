@@ -16,15 +16,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   void initState() {
     _videoPlayerController =
         VideoPlayerController.networkUrl(
-            Uri.parse(
-              context
-                      .read<VideoDetailsCubit>()
-                      .videoModel
-                      ?.videos
-                      ?.items?[0]
-                      .url ??
-                  "",
-            ),
+            Uri.parse(context.read<VideoDetailsCubit>().videoModel?.videos?.items?[0].url ?? ""),
           )
           ..initialize().then((v) {
             setState(() {
@@ -44,9 +36,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        _videoPlayerController.value.isPlaying
-            ? _videoPlayerController.pause()
-            : _videoPlayerController.play();
+        _videoPlayerController.value.isPlaying ? _videoPlayerController.pause() : _videoPlayerController.play();
       },
       child: AspectRatio(
         aspectRatio: _videoPlayerController.value.aspectRatio,
