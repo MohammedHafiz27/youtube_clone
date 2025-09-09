@@ -4,7 +4,7 @@ import 'package:youtube_clone/Features/video_details/presentation/view_models/re
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/related_video_item.dart';
 
 class RelatedVideosWidgetBuilder extends StatelessWidget {
-  const RelatedVideosWidgetBuilder({super.key});
+  const  RelatedVideosWidgetBuilder({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class RelatedVideosWidgetBuilder extends StatelessWidget {
         if (state is RelatedVideosSuccess) {
           return SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
-              return RelatedVideoItem(relatedVideo: state.relatedVideos, index: index,);
+              return RelatedVideoItem(relatedVideo: state.relatedVideos, index: index);
             }, childCount: state.relatedVideos.items?.length),
           );
         } else if (state is RelatedVideosFailure) {

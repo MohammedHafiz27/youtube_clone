@@ -8,7 +8,7 @@ import 'package:youtube_clone/Features/video_details/presentation/view_models/co
 class CommentContent extends StatelessWidget {
   const CommentContent({super.key, required this.commentsCubit, this.index});
 
-  final CommentsCubit commentsCubit;
+  final CommentsCubit? commentsCubit;
   final int? index;
 
   @override
@@ -18,7 +18,7 @@ class CommentContent extends StatelessWidget {
         CircleAvatar(
           backgroundImage: CachedNetworkImageProvider(
             commentsCubit
-                    .commentsModel
+                    ?.commentsModel
                     ?.items?[index ?? 0]
                     .channel
                     ?.avatar?[0]
@@ -32,7 +32,7 @@ class CommentContent extends StatelessWidget {
           child: Linkify(
             onOpen: onOpen,
             text:
-                commentsCubit.commentsModel?.items?[index ?? 0].contentText ??
+                commentsCubit?.commentsModel?.items?[index ?? 0].contentText ??
                 "",
             style: AppStyles.styleSemiBold16(context),
           ),

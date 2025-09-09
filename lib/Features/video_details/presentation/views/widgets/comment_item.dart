@@ -5,9 +5,9 @@ import 'package:youtube_clone/Features/video_details/presentation/views/widgets/
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/comments_list_view.dart';
 
 class CommentItem extends StatelessWidget {
-  const CommentItem({super.key, required this.commentsCubit});
+  const CommentItem({super.key, this.commentsCubit});
 
-  final CommentsCubit commentsCubit;
+  final CommentsCubit? commentsCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class CommentItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              commentsCubit.commentsModel?.countText ?? "",
+              commentsCubit?.commentsModel?.countText ?? "",
               style: AppStyles.styleBold18(context),
             ),
             CommentContent(commentsCubit: commentsCubit),

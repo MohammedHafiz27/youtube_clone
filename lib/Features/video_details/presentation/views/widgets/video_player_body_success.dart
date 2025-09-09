@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube_clone/Core/utils/app_styles.dart';
 import 'package:youtube_clone/Features/video_details/presentation/view_models/comments_cubit/comments_cubit.dart';
-import 'package:youtube_clone/Features/video_details/presentation/view_models/related_videos_cubit/related_videos_cubit.dart';
 import 'package:youtube_clone/Features/video_details/presentation/view_models/video_details_cubit/video_details_cubit.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/action_button_scroll_view.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/channel_info_widget.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/comment_item.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/related_video_item.dart';
+import 'package:youtube_clone/Features/video_details/presentation/views/widgets/comment_builder.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/related_video_widget_builder.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/subtitle_description_widget.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_player_widget.dart';
@@ -35,7 +33,7 @@ class VideoPlayerBody extends StatelessWidget {
               SliverToBoxAdapter(child: SubTitleDescriptionWidget(videoDetailsCubit: videoDetailsCubit)),
               SliverToBoxAdapter(child: ChannelInfoWidget(videoDetailsCubit: videoDetailsCubit)),
               SliverToBoxAdapter(child: ActionButtonScrollView(videoDetailsCubit: videoDetailsCubit)),
-              SliverToBoxAdapter(child: CommentItem(commentsCubit: commentsCubit)),
+              CommentBuilder(commentsCubit: commentsCubit),
               RelatedVideosWidgetBuilder(),
             ],
           ),

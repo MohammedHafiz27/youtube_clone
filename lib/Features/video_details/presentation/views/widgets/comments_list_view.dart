@@ -5,28 +5,28 @@ import 'package:youtube_clone/Features/video_details/presentation/view_models/co
 class CommentsListView extends StatelessWidget {
   const CommentsListView({super.key, required this.commentsCubit});
 
-  final CommentsCubit commentsCubit;
+  final CommentsCubit? commentsCubit;
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: commentsCubit.commentsModel?.items!.length ?? 0,
+      itemCount: commentsCubit?.commentsModel?.items?.length ?? 0,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
           child: ListTile(
             leading: CircleAvatar(
-              backgroundImage: NetworkImage(commentsCubit.commentsModel?.items?[index].channel?.avatar?[0].url ?? ""),
+              backgroundImage: NetworkImage(commentsCubit?.commentsModel?.items?[index].channel?.avatar?[0].url ?? ""),
             ),
             title: Text(
-              commentsCubit.commentsModel?.items?[index].channel?.name ?? "",
+              commentsCubit?.commentsModel?.items?[index].channel?.name ?? "",
               style: AppStyles.styleRegular14(context),
             ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  commentsCubit.commentsModel?.items?[index].contentText ?? "",
+                  commentsCubit?.commentsModel?.items?[index].contentText ?? "",
                   style: AppStyles.styleSemiBold16(context),
                 ),
                 Row(
