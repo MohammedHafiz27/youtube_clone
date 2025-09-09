@@ -17,6 +17,14 @@ abstract class AppStyles {
       fontSize: getResponsiveFontSize(context, fontSize: 16),
     );
   }
+
+  static TextStyle styleBold18(BuildContext context) {
+    return TextStyle(
+      color: Theme.of(context).textTheme.bodyLarge?.color,
+      fontWeight: FontWeight.w600,
+      fontSize: getResponsiveFontSize(context, fontSize: 18),
+    );
+  }
 }
 
 double getResponsiveFontSize(BuildContext context, {required double fontSize}) {

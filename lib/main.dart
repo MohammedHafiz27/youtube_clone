@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
           bodyMedium: TextStyle(color: Colors.grey),
           bodySmall: TextStyle(color: Colors.white),
         ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(foregroundColor: Colors.black, backgroundColor: Colors.white),
+        ),
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: AppBarTheme(backgroundColor: Colors.black),
       ),
