@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:youtube_clone/Core/functions/on_open.dart';
 import 'package:youtube_clone/Core/utils/app_styles.dart';
 import 'package:youtube_clone/Features/video_details/presentation/view_models/video_details_cubit/video_details_cubit.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_details_info_likes_views.dart';
@@ -9,14 +9,6 @@ class ModalBottomSheetWidget extends StatelessWidget {
   const ModalBottomSheetWidget({super.key, required this.videoDetailsCubit});
 
   final VideoDetailsCubit videoDetailsCubit;
-  Future<void> _onOpen(LinkableElement link) async {
-    final uri = Uri.parse(link.url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri);
-    } else {
-      throw 'Could not launch $link';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +55,7 @@ class ModalBottomSheetWidget extends StatelessWidget {
                   ),
 
                   Linkify(
-                    onOpen: _onOpen,
+                    onOpen: onOpen,
                     text: videoDetailsCubit.videoModel?.description ?? "",
                     style: AppStyles.styleRegular14(context),
                     linkStyle: AppStyles.styleRegular14(

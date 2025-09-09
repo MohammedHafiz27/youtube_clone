@@ -14,13 +14,11 @@ class ChannelInfoWidget extends StatelessWidget {
       spacing: 12,
       children: [
         CircleAvatar(
-          backgroundImage: CachedNetworkImageProvider(
-            videoDetailsCubit.videoModel?.channel?.avatar?[1].url ?? "",
-          ),
+          backgroundImage: CachedNetworkImageProvider(videoDetailsCubit.videoModel?.channel?.avatar?[1].url ?? ""),
         ),
-        Text(
-          videoDetailsCubit.videoModel?.channel?.name ?? "",
-          style: AppStyles.styleBold18(context),
+        Expanded(
+          flex: 4,
+          child: Text(videoDetailsCubit.videoModel?.channel?.name ?? "", style: AppStyles.styleBold18(context)),
         ),
         Text(videoDetailsCubit.videoModel?.channel?.subscriberCountText ?? ""),
         Expanded(child: SizedBox()),
