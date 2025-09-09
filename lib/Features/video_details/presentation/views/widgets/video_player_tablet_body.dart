@@ -5,138 +5,101 @@ import 'package:youtube_clone/Features/video_details/presentation/view_models/co
 import 'package:youtube_clone/Features/video_details/presentation/view_models/video_details_cubit/video_details_cubit.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/action_button_scroll_view.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/channel_info_widget.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/comment_builder.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/comment_content.dart';
+import 'package:youtube_clone/Features/video_details/presentation/views/widgets/comments_tablet_builder.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/related_video_widget_builder.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/subtitle_description_widget.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_player_widget.dart';
 
-class VideoPlayerTabletBody extends StatelessWidget {
+class VideoPlayerTabletBody extends StatefulWidget {
   const VideoPlayerTabletBody({super.key});
+
+  @override
+  State<VideoPlayerTabletBody> createState() => _VideoPlayerTabletBodyState();
+}
+
+class _VideoPlayerTabletBodyState extends State<VideoPlayerTabletBody> {
+  final ScrollController _leftController = ScrollController();
+  final ScrollController _rightController = ScrollController();
+  bool _isLeftScrolling = false;
+  bool _isRightScrolling = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _leftController.addListener(() {
+      if (_isRightScrolling) return;
+      _isLeftScrolling = true;
+      _rightController.jumpTo(_leftController.offset.clamp(
+        _rightController.position.minScrollExtent,
+        _rightController.position.maxScrollExtent,
+      ));
+      _isLeftScrolling = false;
+    });
+
+    _rightController.addListener(() {
+      if (_isLeftScrolling) return;
+      _isRightScrolling = true;
+      _leftController.jumpTo(_rightController.offset.clamp(
+        _leftController.position.minScrollExtent,
+        _leftController.position.maxScrollExtent,
+      ));
+      _isRightScrolling = false;
+    });
+  }
+
+  @override
+  void dispose() {
+    _leftController.dispose();
+    _rightController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final videoDetailsCubit = context.read<VideoDetailsCubit>();
     final commentsCubit = context.read<CommentsCubit>();
 
-    return Column(
+    return Row(
       children: [
         Expanded(
-          child: Row(
-            children: [
-              Expanded(
-                flex: 3,
-                child: CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          spacing: 12,
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const VideoPlayerWidget(),
-                            Text(videoDetailsCubit.videoModel?.title ?? "", style: AppStyles.styleBold18(context)),
-                            SubTitleDescriptionWidget(videoDetailsCubit: videoDetailsCubit),
-                            ChannelInfoWidget(videoDetailsCubit: videoDetailsCubit),
-                            ActionButtonScrollView(videoDetailsCubit: videoDetailsCubit),
-                            CommentTabletBuilder(commentsCubit: commentsCubit),
-                          ],
-                        ),
+          flex: 3,
+          child: CustomScrollView(
+            controller: _leftController,
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    spacing: 12,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const VideoPlayerWidget(),
+                      Text(
+                        videoDetailsCubit.videoModel?.title ?? "",
+                        style: AppStyles.styleBold18(context),
                       ),
-                    ),
-                  ],
+                      SubTitleDescriptionWidget(videoDetailsCubit: videoDetailsCubit),
+                      ChannelInfoWidget(videoDetailsCubit: videoDetailsCubit),
+                      ActionButtonScrollView(videoDetailsCubit: videoDetailsCubit),
+                      CommentTabletBuilder(commentsCubit: commentsCubit),
+                    ],
+                  ),
                 ),
               ),
-              Expanded(flex: 1, child: CustomScrollView(slivers: [RelatedVideosWidgetBuilder()])),
+            ],
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: CustomScrollView(
+            controller: _rightController,
+            slivers: const [
+              RelatedVideosWidgetBuilder(),
             ],
           ),
         ),
       ],
-    );
-  }
-}
-
-class CommentTabletBuilder extends StatelessWidget {
-  const CommentTabletBuilder({super.key, required this.commentsCubit});
-  final CommentsCubit commentsCubit;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<CommentsCubit, CommentsState>(
-      builder: (context, state) {
-        if (state is CommentsSuccess) {
-          return CommentItemTablet(commentsCubit: commentsCubit);
-        } else if (state is CommentsFailure) {
-          return Center(child: Text(state.errorMessage));
-        } else {
-          return Center(child: CircularProgressIndicator());
-        }
-      },
-    );
-  }
-}
-
-class CommentItemTablet extends StatelessWidget {
-  const CommentItemTablet({super.key, this.commentsCubit});
-
-  final CommentsCubit? commentsCubit;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        color: Theme.of(context).brightness == Brightness.dark
-            ? Colors.white.withValues(alpha: .1)
-            : Colors.grey.shade200,
-      ),
-      child: Column(
-        spacing: 12,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(commentsCubit?.commentsModel?.countText ?? "", style: AppStyles.styleBold18(context)),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: commentsCubit?.commentsModel?.items?.length ?? 0,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                      commentsCubit?.commentsModel?.items?[index].channel?.avatar?[0].url ?? "",
-                    ),
-                  ),
-                  title: Text(
-                    commentsCubit?.commentsModel?.items?[index].channel?.name ?? "",
-                    style: AppStyles.styleRegular14(context),
-                  ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        commentsCubit?.commentsModel?.items?[index].contentText ?? "",
-                        style: AppStyles.styleSemiBold16(context),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Icon(Icons.thumb_up_alt_outlined, size: 18, color: Colors.grey),
-                          Icon(Icons.thumb_down_alt_outlined, size: 18, color: Colors.grey),
-                          Icon(Icons.comment, size: 18, color: Colors.grey),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
     );
   }
 }
