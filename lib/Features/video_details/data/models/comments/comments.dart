@@ -2,15 +2,15 @@ import 'package:equatable/equatable.dart';
 
 import 'item.dart';
 
-class Comments extends Equatable {
+class CommentsModel extends Equatable {
   final String? errorId;
   final String? nextToken;
   final String? countText;
   final List<Item>? items;
 
-  const Comments({this.errorId, this.nextToken, this.countText, this.items});
+  const CommentsModel({this.errorId, this.nextToken, this.countText, this.items});
 
-  factory Comments.fromJson(Map<String, dynamic> json) => Comments(
+  factory CommentsModel.fromJson(Map<String, dynamic> json) => CommentsModel(
     errorId: json['errorId'] as String?,
     nextToken: json['nextToken'] as String?,
     countText: json['countText'] as String?,

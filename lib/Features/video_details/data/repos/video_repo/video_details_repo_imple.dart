@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:youtube_clone/Core/utils/api_service.dart';
 import 'package:youtube_clone/Core/utils/failures.dart';
 import 'package:youtube_clone/Features/video_details/data/models/video/video.dart';
-import 'package:youtube_clone/Features/video_details/data/repos/video_details_repo.dart';
+import 'package:youtube_clone/Features/video_details/data/repos/video_repo/video_details_repo.dart';
 
 class VideoDetailsRepoImple implements VideoDetailsRepo {
   final ApiService apiService;
