@@ -18,9 +18,15 @@ class VideoDetails extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => VideoDetailsCubit(VideoDetailsRepoImple(ApiService()))..getVideoDetails(videoId),
+          create: (context) =>
+              VideoDetailsCubit(VideoDetailsRepoImple(ApiService()))
+                ..getVideoDetails(videoId),
         ),
-        BlocProvider(create: (context) => CommentsCubit(CommentsRepoImple(ApiService()))..getComments(videoId)),
+        BlocProvider(
+          create: (context) =>
+              CommentsCubit(CommentsRepoImple(ApiService()))
+                ..getComments(videoId),
+        ),
       ],
       child: Scaffold(
         appBar: AppBar(title: CustomAppBar()),

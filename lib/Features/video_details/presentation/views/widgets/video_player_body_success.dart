@@ -21,7 +21,10 @@ class VideoPlayerBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         VideoPlayerWidget(),
-        Text(videoDetailsCubit.videoModel?.title ?? "", style: AppStyles.styleBold18(context)),
+        Text(
+          videoDetailsCubit.videoModel?.title ?? "",
+          style: AppStyles.styleBold18(context),
+        ),
         SubTitleDescriptionWidget(videoDetailsCubit: videoDetailsCubit),
         ChannelInfoWidget(videoDetailsCubit: videoDetailsCubit),
         ActionButtonScrollView(videoDetailsCubit: videoDetailsCubit),

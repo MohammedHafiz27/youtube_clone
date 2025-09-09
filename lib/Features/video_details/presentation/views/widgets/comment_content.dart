@@ -17,7 +17,13 @@ class CommentContent extends StatelessWidget {
       children: [
         CircleAvatar(
           backgroundImage: CachedNetworkImageProvider(
-            commentsCubit.commentsModel?.items?[index ?? 0].channel?.avatar?[0].url ?? "",
+            commentsCubit
+                    .commentsModel
+                    ?.items?[index ?? 0]
+                    .channel
+                    ?.avatar?[0]
+                    .url ??
+                "",
           ),
         ),
         SizedBox(width: 8),
@@ -25,7 +31,9 @@ class CommentContent extends StatelessWidget {
           flex: 1,
           child: Linkify(
             onOpen: onOpen,
-            text: commentsCubit.commentsModel?.items?[index ?? 0].contentText ?? "",
+            text:
+                commentsCubit.commentsModel?.items?[index ?? 0].contentText ??
+                "",
             style: AppStyles.styleSemiBold16(context),
           ),
         ),

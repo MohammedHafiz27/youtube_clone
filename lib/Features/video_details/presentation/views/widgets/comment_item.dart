@@ -32,7 +32,10 @@ class CommentItem extends StatelessWidget {
           spacing: 8,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(commentsCubit.commentsModel?.countText ?? "", style: AppStyles.styleBold18(context)),
+            Text(
+              commentsCubit.commentsModel?.countText ?? "",
+              style: AppStyles.styleBold18(context),
+            ),
             CommentContent(commentsCubit: commentsCubit),
           ],
         ),

@@ -13,7 +13,9 @@ class ActionButtonWidget extends StatelessWidget {
       label: Text(button.label),
 
       style: ElevatedButton.styleFrom(
-        foregroundColor: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
+        foregroundColor: Theme.of(context).brightness == Brightness.dark
+            ? Colors.white
+            : Colors.black,
         backgroundColor: Theme.of(context).brightness == Brightness.dark
             ? Colors.white.withValues(alpha: .1)
             : Colors.grey.shade200,

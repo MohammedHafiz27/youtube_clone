@@ -12,7 +12,9 @@ class CommentsRepoImple implements CommentsRepo {
   @override
   Future<Either<Failure, CommentsModel>> getComments(String videoId) async {
     try {
-      var data = await apiService.getData("/v2/video/comments?videoId=$videoId");
+      var data = await apiService.getData(
+        "/v2/video/comments?videoId=$videoId",
+      );
       return Right(CommentsModel.fromJson(data));
     } catch (e) {
       if (e is DioException) {

@@ -11,9 +11,12 @@ class CommentsCubit extends Cubit<CommentsState> {
   Future<void> getComments(String videoId) async {
     emit(CommentsLoading());
     var resultEither = await commentsRepo.getComments(videoId);
-    resultEither.fold((failure) => emit(CommentsFailure(errorMessage: failure.errorMessage)), (data) {
-      commentsModel = data;
-      emit(CommentsSuccess());
-    });
+    resultEither.fold(
+      (failure) => emit(CommentsFailure(errorMessage: failure.errorMessage)),
+      (data) {
+        commentsModel = data;
+        emit(CommentsSuccess());
+      },
+    );
   }
 }
