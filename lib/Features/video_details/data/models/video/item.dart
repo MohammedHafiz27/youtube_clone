@@ -57,6 +57,18 @@ class Item extends Equatable {
 
   @override
   List<Object?> get props {
-    return [url, lengthMs, mimeType, extension, lastModified, size, sizeText, hasAudio, quality, width, height];
+    return [
+      url,
+      lengthMs,
+      mimeType,
+      extension,
+      lastModified,
+      size,
+      sizeText,
+      hasAudio,
+      quality,
+      width,
+      height,
+    ];
   }
 }

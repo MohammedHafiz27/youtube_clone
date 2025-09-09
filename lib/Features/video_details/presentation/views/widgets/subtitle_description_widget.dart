@@ -24,7 +24,12 @@ class SubTitleDescriptionWidget extends StatelessWidget {
           text:
               "${videoDetailsCubit.videoModel?.viewCount ?? 0} views • ${videoDetailsCubit.videoModel?.publishedTimeText ?? ""}",
           style: AppStyles.styleRegular14(context),
-          children: [TextSpan(text: "...more", style: AppStyles.styleSemiBold16(context))],
+          children: [
+            TextSpan(
+              text: "...more",
+              style: AppStyles.styleSemiBold16(context),
+            ),
+          ],
         ),
       ),
     );

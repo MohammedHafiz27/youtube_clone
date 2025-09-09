@@ -16,13 +16,23 @@ class HomePageMobileBody extends StatelessWidget {
           return CupertinoActivityIndicator();
         } else if (state is VideoSuccess) {
           return ListView.builder(
-            itemCount: context.read<VideoCubit>().searchModel?.items?.length ?? 0,
+            itemCount:
+                context.read<VideoCubit>().searchModel?.items?.length ?? 0,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () {
                   context.push(
                     AppRoute.kVideoDetails,
-                    extra: {"videoid": context.read<VideoCubit>().searchModel?.items?[index].id ?? "", "index": index},
+                    extra: {
+                      "videoid":
+                          context
+                              .read<VideoCubit>()
+                              .searchModel
+                              ?.items?[index]
+                              .id ??
+                          "",
+                      "index": index,
+                    },
                   );
                 },
                 child: VideoItem(index: index),

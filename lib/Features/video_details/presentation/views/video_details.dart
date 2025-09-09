@@ -13,8 +13,14 @@ class VideoDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => VideoDetailsCubit(VideoDetailsRepoImple(ApiService()))..getVideoDetails(videoId),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              VideoDetailsCubit(VideoDetailsRepoImple(ApiService()))
+                ..getVideoDetails(videoId),
+        ),
+      ],
       child: Scaffold(
         appBar: AppBar(title: CustomAppBar()),
         body: VideoDetailsMobileBody(),

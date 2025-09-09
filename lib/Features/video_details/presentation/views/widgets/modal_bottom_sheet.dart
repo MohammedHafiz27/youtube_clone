@@ -33,19 +33,32 @@ class ModalBottomSheetWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 spacing: 16,
                 children: [
-                  Text(videoDetailsCubit.videoModel?.title ?? "", style: AppStyles.styleSemiBold16(context)),
+                  Text(
+                    videoDetailsCubit.videoModel?.title ?? "",
+                    style: AppStyles.styleSemiBold16(context),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       VideoDetailsInfoLikesViews(
-                        count: videoDetailsCubit.videoModel?.likeCount.toString() ?? "0",
+                        count:
+                            videoDetailsCubit.videoModel?.likeCount
+                                .toString() ??
+                            "0",
                         title: 'Likes',
                       ),
                       VideoDetailsInfoLikesViews(
-                        count: videoDetailsCubit.videoModel?.viewCount.toString() ?? "0",
+                        count:
+                            videoDetailsCubit.videoModel?.viewCount
+                                .toString() ??
+                            "0",
                         title: 'Views',
                       ),
-                      VideoDetailsInfoLikesViews(count: videoDetailsCubit.videoModel?.publishedTimeText ?? "0"),
+                      VideoDetailsInfoLikesViews(
+                        count:
+                            videoDetailsCubit.videoModel?.publishedTimeText ??
+                            "0",
+                      ),
                     ],
                   ),
 
@@ -53,7 +66,9 @@ class ModalBottomSheetWidget extends StatelessWidget {
                     onOpen: _onOpen,
                     text: videoDetailsCubit.videoModel?.description ?? "",
                     style: AppStyles.styleRegular14(context),
-                    linkStyle: AppStyles.styleRegular14(context).copyWith(color: Colors.blue),
+                    linkStyle: AppStyles.styleRegular14(
+                      context,
+                    ).copyWith(color: Colors.blue),
                   ),
                 ],
               ),
