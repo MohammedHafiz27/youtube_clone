@@ -27,7 +27,7 @@ class CommentItemTablet extends StatelessWidget {
             itemCount: commentsCubit?.commentsModel?.items?.length ?? 0,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 8),
+                padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
                 child: ListTile(
                   leading: CircleAvatar(
                     backgroundImage: NetworkImage(
@@ -43,8 +43,11 @@ class CommentItemTablet extends StatelessWidget {
                     children: [
                       Text(
                         commentsCubit?.commentsModel?.items?[index].contentText ?? "",
-                        style: AppStyles.styleSemiBold16(context),
+                        style: AppStyles.styleRegular14(
+                          context,
+                        ).copyWith(color: Theme.of(context).textTheme.bodyLarge?.color),
                       ),
+                      const SizedBox(height: 12),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube_clone/Core/utils/api_service.dart';
-import 'package:youtube_clone/Core/utils/app_styles.dart';
 import 'package:youtube_clone/Core/utils/custom_adaptive_layout.dart';
 import 'package:youtube_clone/Features/home_page/presentation/views/widgets/custom_app_bar.dart';
 import 'package:youtube_clone/Features/video_details/data/repos/comments_repo/comments_repo_imple.dart';
@@ -10,14 +9,8 @@ import 'package:youtube_clone/Features/video_details/data/repos/video_repo/video
 import 'package:youtube_clone/Features/video_details/presentation/view_models/comments_cubit/comments_cubit.dart';
 import 'package:youtube_clone/Features/video_details/presentation/view_models/related_videos_cubit/related_videos_cubit.dart';
 import 'package:youtube_clone/Features/video_details/presentation/view_models/video_details_cubit/video_details_cubit.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/action_button_scroll_view.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/channel_info_widget.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/comment_builder.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/related_video_widget_builder.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/subtitle_description_widget.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_details_mobile_body.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_player_tablet_body.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_player_widget.dart';
 
 class VideoDetails extends StatelessWidget {
   final int index;

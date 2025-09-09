@@ -43,10 +43,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       });
                     },
                   )
-                : Align(
-                    alignment: Alignment.centerRight,
-                    child: Icon(Icons.search, color: Colors.white),
-                  ),
+                : Align(alignment: Alignment.centerRight, child: Icon(Icons.search)),
           ),
         ),
       ],
