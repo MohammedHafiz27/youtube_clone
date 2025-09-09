@@ -12,16 +12,11 @@ class CommentBuilder extends StatelessWidget {
     return BlocBuilder<CommentsCubit, CommentsState>(
       builder: (context, state) {
         if (state is CommentsSuccess) {
-          return SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: CommentItem(commentsCubit: commentsCubit),
-            ),
-          );
+          return CommentItem(commentsCubit: commentsCubit);
         } else if (state is CommentsFailure) {
-          return SliverToBoxAdapter(child: Center(child: Text(state.errorMessage)));
+          return Center(child: Text(state.errorMessage));
         } else {
-          return const SliverToBoxAdapter(child: Center(child: CircularProgressIndicator()));
+          return Center(child: CircularProgressIndicator());
         }
       },
     );

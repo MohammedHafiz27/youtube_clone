@@ -36,6 +36,9 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final isTablet = screenSize.shortestSide >= 600;
+
     return GestureDetector(
       onTap: () async {
         if (_player.state.playing) {
@@ -44,9 +47,20 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
           await _player.play();
         }
       },
-      child: AspectRatio(
-        aspectRatio: 16 / 9,
-        child: Video(controller: _controller),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(),
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(isTablet ? 16 : 12)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(isTablet ? 16 : 12),
+                child: Video(controller: _controller, fit: BoxFit.fill),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

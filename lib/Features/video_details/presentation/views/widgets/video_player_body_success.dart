@@ -10,8 +10,8 @@ import 'package:youtube_clone/Features/video_details/presentation/views/widgets/
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/subtitle_description_widget.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_player_widget.dart';
 
-class VideoPlayerBody extends StatelessWidget {
-  const VideoPlayerBody({super.key});
+class VideoPlayerMobileBody extends StatelessWidget {
+  const VideoPlayerMobileBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class VideoPlayerBody extends StatelessWidget {
               SliverToBoxAdapter(child: SubTitleDescriptionWidget(videoDetailsCubit: videoDetailsCubit)),
               SliverToBoxAdapter(child: ChannelInfoWidget(videoDetailsCubit: videoDetailsCubit)),
               SliverToBoxAdapter(child: ActionButtonScrollView(videoDetailsCubit: videoDetailsCubit)),
-              CommentBuilder(commentsCubit: commentsCubit),
+              SliverToBoxAdapter(child: CommentBuilder(commentsCubit: commentsCubit)),
               RelatedVideosWidgetBuilder(),
             ],
           ),

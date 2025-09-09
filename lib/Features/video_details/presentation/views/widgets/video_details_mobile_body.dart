@@ -13,7 +13,7 @@ class VideoDetailsMobileBody extends StatelessWidget {
         if (state is VideoDetailsLoading) {
           return CircularProgressIndicator();
         } else if (state is VideoDetailsSuccess) {
-          return VideoPlayerBody();
+          return VideoPlayerMobileBody();
         } else {
           return Text("Error");
         }
