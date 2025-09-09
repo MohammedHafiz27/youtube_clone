@@ -10,6 +10,7 @@ class VideoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final videoCubit = context.read<VideoCubit>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Column(
@@ -21,12 +22,7 @@ class VideoItem extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 child: CachedNetworkImage(
                   imageUrl:
-                      context
-                          .read<VideoCubit>()
-                          .searchModel
-                          ?.items?[index]
-                          .thumbnails![1]
-                          .url ??
+                      context.read<VideoCubit>().searchModel?.items?[index].thumbnails![1].url ??
                       "https://img.pikbest.com/origin/10/04/54/34TpIkbEsT4uG.jpg!w700wp",
                   fit: BoxFit.fill,
                 ),
@@ -35,18 +31,10 @@ class VideoItem extends StatelessWidget {
                 bottom: 8,
                 right: 8,
                 child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black54,
-                    borderRadius: BorderRadius.circular(4),
-                  ),
+                  decoration: BoxDecoration(color: Colors.black54, borderRadius: BorderRadius.circular(4)),
                   padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   child: Text(
-                    context
-                            .read<VideoCubit>()
-                            .searchModel!
-                            .items![index]
-                            .lengthText ??
-                        "12:52",
+                    videoCubit.searchModel!.items![index].lengthText ?? "12:52",
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -60,13 +48,7 @@ class VideoItem extends StatelessWidget {
               CircleAvatar(
                 radius: 18,
                 backgroundImage: CachedNetworkImageProvider(
-                  context
-                          .read<VideoCubit>()
-                          .searchModel
-                          ?.items?[index]
-                          .channel
-                          ?.avatar?[0]
-                          .url ??
+                  videoCubit.searchModel?.items?[index].channel?.avatar?[0].url ??
                       "https://img.pikbest.com/origin/10/04/54/34TpIkbEsT4uG.jpg!w700wp",
                 ),
               ),
@@ -78,28 +60,17 @@ class VideoItem extends StatelessWidget {
                     Text(
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      context
-                              .read<VideoCubit>()
-                              .searchModel
-                              ?.items?[index]
-                              .title ??
-                          "Video Title",
+                      videoCubit.searchModel?.items?[index].title ?? "Video Title",
                       style: AppStyles.styleSemiBold16(context),
                     ),
                     SizedBox(height: 4),
                     Text(
-                      context
-                              .read<VideoCubit>()
-                              .searchModel
-                              ?.items?[index]
-                              .channel
-                              ?.name ??
-                          "Channel Name",
+                      videoCubit.searchModel?.items?[index].channel?.name ?? "Channel Name",
                       style: AppStyles.styleRegular14(context),
                     ),
                     SizedBox(height: 4),
                     Text(
-                      "${context.read<VideoCubit>().searchModel?.items?[index].viewCountText} • ${context.read<VideoCubit>().searchModel?.items?[index].publishedTimeText}",
+                      "${videoCubit.searchModel?.items?[index].viewCountText} • ${videoCubit.searchModel?.items?[index].publishedTimeText}",
                       style: AppStyles.styleRegular14(context),
                     ),
                   ],
