@@ -16,6 +16,7 @@ import 'package:youtube_clone/Features/video_details/presentation/views/widgets/
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/related_video_widget_builder.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/subtitle_description_widget.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_details_mobile_body.dart';
+import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_player_tablet_body.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_player_widget.dart';
 
 class VideoDetails extends StatelessWidget {
@@ -61,52 +62,6 @@ class VideoDetailsTabletBody extends StatelessWidget {
           return Text("Error");
         }
       },
-    );
-  }
-}
-
-class VideoPlayerTabletBody extends StatelessWidget {
-  const VideoPlayerTabletBody({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final videoDetailsCubit = context.read<VideoDetailsCubit>();
-    final commentsCubit = context.read<CommentsCubit>();
-
-    return Column(
-      children: [
-        Expanded(
-          child: Row(
-            children: [
-              Expanded(
-                flex: 3,
-                child: CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Column(
-                          spacing: 12,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const VideoPlayerWidget(),
-                            Text(videoDetailsCubit.videoModel?.title ?? "", style: AppStyles.styleBold18(context)),
-                            SubTitleDescriptionWidget(videoDetailsCubit: videoDetailsCubit),
-                            ChannelInfoWidget(videoDetailsCubit: videoDetailsCubit),
-                            ActionButtonScrollView(videoDetailsCubit: videoDetailsCubit),
-                            CommentBuilder(commentsCubit: commentsCubit),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(flex: 1, child: CustomScrollView(slivers: [RelatedVideosWidgetBuilder()])),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
