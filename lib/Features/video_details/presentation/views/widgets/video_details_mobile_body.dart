@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:video_player/video_player.dart';
-import 'package:youtube_clone/Features/home_page/presentation/views/widgets/custom_app_bar.dart';
+import 'package:youtube_clone/Features/video_details/presentation/view_models/video_details_cubit/video_details_cubit.dart';
 
 class VideoDetailsMobileBody extends StatelessWidget {
   const VideoDetailsMobileBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: CustomAppBar()),
-      body: Column(children: []),
+    return Column(
+      children: [
+        BlocBuilder<VideoDetailsCubit, VideoDetailsState>(
+          builder: (context, state) {
+            if (state is VideoDetailsLoading) {
+              return CircularProgressIndicator();
+            } else if (state is VideoDetailsSuccess) {
+              return VideoPlayerWidget();
+            } else {
+              return Text("Error");
+            }
+          },
+        ),
+      ],
     );
   }
 }
@@ -25,12 +37,15 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   late VideoPlayerController _videoPlayerController;
   @override
   void initState() {
-    _videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(""))
-      ..initialize().then((v) {
-        setState(() {
-          _videoPlayerController.play();
-        });
-      });
+    _videoPlayerController =
+        VideoPlayerController.networkUrl(
+            Uri.parse(context.read<VideoDetailsCubit>().videoModel?.videos?.items?[0].url ?? ""),
+          )
+          ..initialize().then((v) {
+            setState(() {
+              _videoPlayerController.play();
+            });
+          });
     super.initState();
   }
 
@@ -42,6 +57,14 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return VideoPlayer(_videoPlayerController);
+    return GestureDetector(
+      onTap: () {
+        _videoPlayerController.value.isPlaying ? _videoPlayerController.pause() : _videoPlayerController.play();
+      },
+      child: AspectRatio(
+        aspectRatio: _videoPlayerController.value.aspectRatio,
+        child: VideoPlayer(_videoPlayerController),
+      ),
+    );
   }
 }

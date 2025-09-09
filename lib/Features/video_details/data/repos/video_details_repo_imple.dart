@@ -8,7 +8,7 @@ import 'package:youtube_clone/Features/video_details/data/repos/video_details_re
 class VideoDetailsRepoImple implements VideoDetailsRepo {
   final ApiService apiService;
 
-  VideoDetailsRepoImple({required this.apiService});
+  VideoDetailsRepoImple(this.apiService);
   @override
   Future<Either<Failure, VideoModel>> getVideoDetails(String videoId) async {
     try {
