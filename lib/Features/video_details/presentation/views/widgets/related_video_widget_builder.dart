@@ -17,9 +17,9 @@ class RelatedVideosWidgetBuilder extends StatelessWidget {
             delegate: SliverChildBuilderDelegate((context, index) {
               return GestureDetector(
                 onTap: () {
-                  context.push(
+                  context.pushReplacement(
                     AppRoute.kVideoDetails,
-                    extra: {"videoid": state.relatedVideos.items?[index].id ?? "", "index": index},
+                    extra: {"videoid": state.relatedVideos.items?[index].id ?? ""},
                   );
                 },
                 child: RelatedVideoItem(relatedVideo: state.relatedVideos, index: index),

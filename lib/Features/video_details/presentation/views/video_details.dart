@@ -13,9 +13,9 @@ import 'package:youtube_clone/Features/video_details/presentation/views/widgets/
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_details_tablet_body.dart';
 
 class VideoDetails extends StatelessWidget {
-  final int index;
+ 
   final String videoId;
-  const VideoDetails({super.key, required this.index, required this.videoId});
+  const VideoDetails({super.key,  required this.videoId});
 
   @override
   Widget build(BuildContext context) {

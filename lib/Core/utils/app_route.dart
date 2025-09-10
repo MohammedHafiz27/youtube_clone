@@ -19,7 +19,7 @@ abstract class AppRoute {
         path: kVideoDetails,
         builder: (BuildContext context, GoRouterState state) {
           final Map<String, dynamic> args = state.extra as Map<String, dynamic>;
-          return VideoDetails(index: args["index"], videoId: args["videoid"]);
+          return VideoDetails(videoId: args["videoid"]);
         },
       ),
     ],

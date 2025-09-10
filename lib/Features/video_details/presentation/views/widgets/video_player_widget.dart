@@ -54,10 +54,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
             aspectRatio: 16 / 9,
             child: Container(
               decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(isTablet ? 16 : 12)),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(isTablet ? 16 : 12),
-                child: Video(controller: _controller, fit: BoxFit.fill),
-              ),
+              child: Video(controller: _controller, fit: BoxFit.fill),
             ),
           ),
         ),

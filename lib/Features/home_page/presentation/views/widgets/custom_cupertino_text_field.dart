@@ -43,7 +43,9 @@ class CustomCupertinoTextField extends StatelessWidget {
       placeholderStyle: TextStyle(color: Colors.black54),
       style: TextStyle(color: Colors.black),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? CupertinoColors.systemGrey4
+            : CupertinoColors.systemGrey5,
         border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.circular(4),
       ),
