@@ -11,13 +11,9 @@ class VideoDetailsCubit extends Cubit<VideoDetailsState> {
   Future<void> getVideoDetails(String videoId) async {
     emit(VideoDetailsLoading());
     var resultEither = await videoDetailsRepo.getVideoDetails(videoId);
-    resultEither.fold(
-      (failure) =>
-          emit(VideoDetailsFailure(errorMessage: failure.errorMessage)),
-      (data) {
-        videoModel = data;
-        emit(VideoDetailsSuccess());
-      },
-    );
+    resultEither.fold((failure) => emit(VideoDetailsFailure(errorMessage: failure.errorMessage)), (data) {
+      videoModel = data;
+      emit(VideoDetailsSuccess());
+    });
   }
 }

@@ -10,7 +10,7 @@ import 'package:youtube_clone/Features/video_details/presentation/view_models/co
 import 'package:youtube_clone/Features/video_details/presentation/view_models/related_videos_cubit/related_videos_cubit.dart';
 import 'package:youtube_clone/Features/video_details/presentation/view_models/video_details_cubit/video_details_cubit.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_details_mobile_body.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_player_tablet_body.dart';
+import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_details_tablet_body.dart';
 
 class VideoDetails extends StatelessWidget {
   final int index;
@@ -36,25 +36,6 @@ class VideoDetails extends StatelessWidget {
           tabletLayout: (context) => VideoDetailsTabletBody(),
         ),
       ),
-    );
-  }
-}
-
-class VideoDetailsTabletBody extends StatelessWidget {
-  const VideoDetailsTabletBody({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<VideoDetailsCubit, VideoDetailsState>(
-      builder: (context, state) {
-        if (state is VideoDetailsLoading) {
-          return CircularProgressIndicator();
-        } else if (state is VideoDetailsSuccess) {
-          return VideoPlayerTabletBody();
-        } else {
-          return Text("Error");
-        }
-      },
     );
   }
 }
