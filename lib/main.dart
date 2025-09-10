@@ -10,7 +10,6 @@ import 'package:youtube_clone/Core/utils/theme_app.dart';
 Future main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
-  MediaKit.ensureInitialized();
   await CacheHelper.init();
   runApp(MyApp());
 }
