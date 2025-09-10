@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:youtube_clone/Core/cubit/theme_app_cubit.dart';
 import 'package:youtube_clone/Core/utils/assets.dart';
 import 'package:youtube_clone/Features/home_page/presentation/views/widgets/custom_cupertino_text_field.dart';
 
@@ -45,6 +47,10 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   )
                 : Align(alignment: Alignment.centerRight, child: Icon(Icons.search)),
           ),
+        ),
+        IconButton(
+          onPressed: () => context.read<ThemeAppCubit>().toggleTheme(),
+          icon: Theme.of(context).brightness == Brightness.light ? Icon(Icons.dark_mode) : Icon(Icons.light_mode),
         ),
       ],
     );

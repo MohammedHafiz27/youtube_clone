@@ -1,7 +1,10 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:media_kit/media_kit.dart';
+import 'package:youtube_clone/Core/cubit/theme_app_cubit.dart';
+import 'package:youtube_clone/Core/helper/cache_helper.dart';
 import 'package:youtube_clone/Core/utils/app_route.dart';
 import 'package:youtube_clone/Core/utils/theme_app.dart';
 
@@ -9,6 +12,7 @@ Future main() async {
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   MediaKit.ensureInitialized();
+  await CacheHelper.init();
   runApp(DevicePreview(enabled: true, builder: (context) => MyApp()));
 }
 
@@ -17,14 +21,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRoute.router,
-      themeMode: ThemeMode.dark,
-      theme: ThemeApp.lightTheme,
-      darkTheme: ThemeApp.darkTheme,
+    return BlocProvider(
+      create: (context) => ThemeAppCubit(),
+      child: BlocBuilder<ThemeAppCubit, ThemeMode>(
+        builder: (context, mode) {
+          return MaterialApp.router(
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
+            debugShowCheckedModeBanner: false,
+            routerConfig: AppRoute.router,
+            themeMode: mode,
+            theme: ThemeApp.lightTheme,
+            darkTheme: ThemeApp.darkTheme,
+          );
+        },
+      ),
     );
   }
 }
