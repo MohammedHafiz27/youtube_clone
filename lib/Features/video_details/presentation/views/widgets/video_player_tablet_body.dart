@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:youtube_clone/Core/functions/on_open.dart';
 import 'package:youtube_clone/Core/utils/app_styles.dart';
 import 'package:youtube_clone/Features/video_details/presentation/view_models/comments_cubit/comments_cubit.dart';
 import 'package:youtube_clone/Features/video_details/presentation/view_models/video_details_cubit/video_details_cubit.dart';
@@ -10,8 +8,6 @@ import 'package:youtube_clone/Features/video_details/presentation/views/widgets/
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/comments_tablet_builder.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/description_widget_tablet.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/related_video_widget_builder.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/subtitle_description_widget.dart';
-import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_details_info_likes_views.dart';
 import 'package:youtube_clone/Features/video_details/presentation/views/widgets/video_player_widget.dart';
 
 class VideoPlayerTabletBody extends StatefulWidget {
