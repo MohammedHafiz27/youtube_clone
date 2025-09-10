@@ -13,7 +13,7 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   MediaKit.ensureInitialized();
   await CacheHelper.init();
-  runApp(DevicePreview(enabled: true, builder: (context) => MyApp()));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -26,8 +26,6 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<ThemeAppCubit, ThemeMode>(
         builder: (context, mode) {
           return MaterialApp.router(
-            locale: DevicePreview.locale(context),
-            builder: DevicePreview.appBuilder,
             debugShowCheckedModeBanner: false,
             routerConfig: AppRoute.router,
             themeMode: mode,
