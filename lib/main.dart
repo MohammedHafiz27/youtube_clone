@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:media_kit/media_kit.dart';
 import 'package:youtube_clone/Core/cubit/theme_app_cubit.dart';
 import 'package:youtube_clone/Core/helper/cache_helper.dart';
 import 'package:youtube_clone/Core/utils/app_route.dart';
